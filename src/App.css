@@ -1,38 +1,34 @@
 .App {
-  text-align: center;
+    text-align: center;
+}
+.listWord li:hover{
+    background-color: #fff;
+}
+.inputForm{
+
+
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.item {
+    border: 1px solid red;
+    border-radius: 20px;
+    margin: 2px;
+    background: -moz-linear-gradient(90deg, #001BFF 0%, #00BCD4 36%, #EE82EE 100%);
+
+    /* safari 5.1+,chrome 10+ */
+    background: -webkit-linear-gradient(90deg, #001BFF 0%, #00BCD4 36%, #EE82EE 100%);
+
+    /* opera 11.10+ */
+    background: -o-linear-gradient(90deg, #001BFF 0%, #00BCD4 36%, #EE82EE 100%);
+
+    /* ie 6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EE82EE', endColorstr='#001BFF', GradientType=0);
+
+    /* ie 10+ */
+    background: -ms-linear-gradient(90deg, #001BFF 0%, #00BCD4 36%, #EE82EE 100%);
+
+    /* global 94%+ browsers support */
+    background: linear-gradient(90deg, #001BFF 0%, #00BCD4 36%, #EE82EE 100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

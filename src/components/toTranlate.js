@@ -10,10 +10,14 @@ import React from "react";
  export default  function Totranslate({words}) {
 
     return (
+        <div className='listWord'>
+
         <ul>
             {words.map((word)=>(
-                <li key = {word} > {word}</li>
+                 <li  className='item' key = {word} > {word}<button>DELETE</button></li>
                 ))}
+
         </ul>
+        </div>
     );
 }

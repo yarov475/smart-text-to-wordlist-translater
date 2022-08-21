@@ -22,11 +22,17 @@ export default function AddWord(props) {
     function handleChange(e) {
         e.preventDefault()
         const str = e.target.elements.word.value;
+        const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
+
         let listArr = findTopWords(str)
-        console.log(listArr)
+        console.log(listArr + 'founded top 10 words')
 
         for (let i = 0; i < listArr.length; i++) {
-            fetchFn(listArr[i])
+            if (listArr[i]) {
+                fetchFn(listArr[i], url)
+            } else {
+                props.setWords(prevWords => [...prevWords, 'pass']);
+            }
 
         }
 
@@ -36,17 +42,30 @@ export default function AddWord(props) {
          * @param {String} fetchWord - take one string from input and translate it
          */
         // TODO err bondary app shouldnt riun becose api cant find word in dictionary
-        async function fetchFn(fetchWord) {
+
+
+        async function fetchFn(fetchWord, url) {
             try {
-                fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${fetchWord}`)
-                    .then(r => r.json())
-                    .then(json => props.setWords(prevWords => [...prevWords, `${json[0].word}  
-             ${json[0].phonetic}  
-            ${json[0].meanings[1]['definitions'][0]['definition']} `])
-                    )
-            } catch (err) {
-                console.log(err)
-            }
+                 fetch(`${url}${fetchWord}`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json()
+                    } else {
+                        return 'not a word'
+                        // return Promise.reject('some other error: ' + response.status)
+                    }
+                })
+                .then(json => props.setWords(prevWords => [...prevWords, `${json[0].word}  
+             ${json[0].phonetic || '-'}
+             ${json[0].meanings}  
+                        
+             `])
+                )
+            }catch(err){console.log(err)}
+
+
+
+            // .catch(error => console.log('error is', error))
         }
 
 
@@ -55,7 +74,7 @@ export default function AddWord(props) {
 
     return (
         <form onSubmit={handleChange}>
-            <input type=' text' id='word'/>
+            <textarea cols='40' rows='40' className='inputForm' id='word'/>
             <button type='submit'>Analize text</button>
         </form>
     )
