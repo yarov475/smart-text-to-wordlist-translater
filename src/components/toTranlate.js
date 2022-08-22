@@ -8,15 +8,8 @@ import React, {useEffect} from "react";
  * @constructor
  */
 export default function Totranslate({words}) {
-
-
-    useEffect(
-        /**
-         * use efect function
-         *
-         */
-        function effectFun()  {
-        console.log(words + 'use Effect')
+    useEffect(() => {
+        console.log(words + 'useEfect')
     }, [words])
     return (
         <div className='listWord'>
