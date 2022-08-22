@@ -5,18 +5,21 @@ import SaveWordList from "./saveList";
 
 
 export default function Glossary() {
-    const [words, setWords] = React.useState(['love', 'sex','With food poisoning.'])
+    const [words, setWords] = React.useState(['love', 'sex', 'With food poisoning.'])
     return (
         <>
             <AddWord
-                setWords={setWords||'err'}
+                setWords={setWords || 'err'}
             />
+            <div>
 
-            <TotranslateList
-                words={words}
-            />
+                <TotranslateList
+                    words={words}
+                />
 
-            <SaveWordList words={words}/>
+                <SaveWordList words={words}/>
+            </div>
+
         </>
 
     )

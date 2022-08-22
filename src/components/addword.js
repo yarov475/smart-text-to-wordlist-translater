@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import findTopWords from "./findTopWords";
-
+import findTopWords from "./componentSrc/topWords/findTopWords";
+import Button from '@mui/material/Button';
 /**
  * function take string and analize it
  * translate define number of most used words exept from stoplist
@@ -25,7 +25,7 @@ export default function AddWord(props) {
         const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
 
         let listArr = findTopWords(str)
-        console.log(listArr + 'founded top 10 words')
+        console.log(listArr + ' founded top 10 words')
 
         for (let i = 0; i < listArr.length; i++) {
             if (listArr[i]) {
@@ -51,31 +51,29 @@ export default function AddWord(props) {
                     if (response.ok) {
                         return response.json()
                     } else {
-                        return 'not a word'
-                        // return Promise.reject('some other error: ' + response.status)
+                        // return 'not a word'
+                        return Promise.reject('some other error: ' + response.status)
                     }
                 })
                 .then(json => props.setWords(prevWords => [...prevWords, `${json[0].word}  
              ${json[0].phonetic || '-'}
-             ${json[0].meanings}  
+             ${json[0].meanings[0]}  
                         
              `])
                 )
             }catch(err){console.log(err)}
-
-
-
-            // .catch(error => console.log('error is', error))
         }
 
 
     }
 
 
+
     return (
         <form onSubmit={handleChange}>
-            <textarea cols='40' rows='40' className='inputForm' id='word'/>
-            <button type='submit'>Analize text</button>
+            <textarea cols='40' rows='40' className='inputForm' id='word' >Please insert text to derrive glossary here</textarea>
+            <Button  type='submit' variant="contained">Translate Glossary</Button>
+
         </form>
     )
 }
